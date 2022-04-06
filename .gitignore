@@ -1,4 +1,9 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
 /.env
 /.vscode
-/grid
 /init
+*.h5
