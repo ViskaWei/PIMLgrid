@@ -1,8 +1,7 @@
 
 from abc import ABC, abstractmethod
 from grid.center.core.interp.interpbuilder import InterpBuilder, RBFInterpBuilder
-from base.interface.gateway.basestorerIF import InterpStorerIF
-
+from grid.interface.gateway.gridstorerIF import InterpStorerIF
 
 class InterpBuilderModel(ABC):
     @abstractmethod
@@ -23,7 +22,6 @@ class RBFInterpBuilderModel(RBFInterpBuilder, InterpBuilderModel):
         return interpolator
 
     def store(self, DATA_DIR, name="interp"):
-        self.storer = InterpStorerIF()
-        self.storer.set_dir(DATA_DIR, name)
+        self.storer = InterpStorerIF.from_dir(DATA_DIR, name)
         self.storer.store(self.interpolator)
         
