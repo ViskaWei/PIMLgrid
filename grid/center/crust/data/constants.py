@@ -10,10 +10,6 @@ class Constants():
         DPhyC ={"MH": "plasma", "Teff": "gist_rainbow", "logG": "turbo",  "CH": "gist_rainbow", "AH" : "winter",
                 "M" : "plasma", "T"   : "gist_rainbow", "G"   : "turbo",  "C" : "gist_rainbow", "A"  : "winter"}
 
-        # Cnms = list(dC.values())
-        # Pnms = list(dC.keys())
-        Ws = list(DWs.keys())
-
         UM = [-2.5 , -2.25, -2.  , -1.75, -1.5 , -1.25, -1.  , -0.75, -0.5 , -0.25,  0.  ,  0.25,  0.5 ,  0.75]
         UT = [ 3500,  3750,  4000,  4250,  4500,  4750,  5000,  5250,
                 5500,  5750,  6000,  6250,  6500,  6750,  7000,  7250,
