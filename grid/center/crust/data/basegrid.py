@@ -6,12 +6,13 @@ class BaseGrid(object):
     def __init__(self, coord, value) -> None:
         self.coord  = coord
         self.value  = value
+        self.coordx = None
+
 
 class StellarGrid(BaseGrid):
     """ Base class for all spec grids. """
     def __init__(self, coord, value) -> None:
         super().__init__(coord, value)
-        self.coordx = None
     
         self.PhyShort = Constants.PhyShort
         self.dfcoord = self.set_dfcoord()
