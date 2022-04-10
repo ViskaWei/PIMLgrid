@@ -9,12 +9,12 @@ class GridParamIF(ParamIF):
         self.box_name = self.get_arg('box_name', PARAM)
 
         self.interp = self.get_arg('interp', PARAM, "RBF")
-        self.OBJECT_PATH = self.get_arg('OBJECTPATH', PARAM, Constants.BOSZ_PATH)
+        self.BOSZ_PATH = self.get_arg('BOSZ_PATH', PARAM, Constants.BOSZ_PATH)
 
         self.set_param_dict()
 
     def set_param_dict(self):
-        self.OBJECT = {"OBJECTPATH": self.OBJECT_PATH}
+        self.OBJECT = {"BOSZ_PATH": self.BOSZ_PATH}
 
         self.MODEL  = {'interp': {'type': self.interp}}
 
