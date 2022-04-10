@@ -40,3 +40,8 @@ class Constants():
         Rnms = list(DRR.keys())
         RRnms = list(DRR.values())
 
+
+#path --------------------------------------------------------------
+
+        """ Path Constants """
+        BOSZ_PATH = "/datascope/subaru/user/swei20/data/pfsspec/import/stellar/grid/bosz_5000_RHB.h5"
