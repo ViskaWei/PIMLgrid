@@ -18,7 +18,7 @@ class RBFInterpBuilderGridModel(RBFInterpBuilderModel):
             unit_coord = Grid.unify(eval_coord) if scale else eval_coord
             return interpolator(unit_coord)   
         Grid.interpolator = unit_coord_interpolator
-        Grid.builder = self.builder
+        Grid.interp_storer = self.store
 
 
         
