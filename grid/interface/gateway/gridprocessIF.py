@@ -8,7 +8,7 @@ class StellarGridProcessIF(ProcessIF):
     def __init__(self) -> None:
         super().__init__()
         self.Loader   = StellarGridLoaderIF()
-        self.paramIF  = StellarGridParamIF()
+        self.ParamIF  = StellarGridParamIF()
         self.Process  = StellarGridProcess()
         self.Storer   = None
 
