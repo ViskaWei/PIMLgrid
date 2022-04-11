@@ -18,22 +18,27 @@ class BaseGridModelOperation(BaseGridOperation, BaseModelOperation):
     def perform_on_Grid(self, Grid: BaseGrid) -> BaseGrid:
         self.model.apply_on_Grid(Grid)
 
-class CoordxGridOperation(BuildScalerOperation, BaseGridOperation):
+class UnifyGridOperation(BuildScalerOperation, BaseGridOperation):
     def perform_on_Grid(self, Grid: BaseGrid) -> BaseGrid:
-        Grid.coordx = self.perform(Grid.coord)
-        Grid.coordx_rng = Grid.coordx.max(0) - Grid.coordx.min(0)
-        Grid.coord2idx = self.scaler
-        Grid.idx2coord = self.rescaler
+        Grid.unit_coord = self.perform(Grid.coord)
+        assert Grid.unit_coord.max() <= 1.0
+        assert Grid.unit_coord.min() >= 0.0
+        Grid.unify = self.scaler
+        Grid.deunify = self.rescaler
 
-class StellarCoordxGridOperation(BaseGridOperation):
-    def perform(self, coord):
-        origin = coord.min(0)
-        OP = CoordxGridOperation(origin, Constants.PHYTICK)
+class StellarUnifyGridOperation(BaseGridOperation):
+    def perform(self, coord, cmin=None, crng=None):
+        if cmin is None: cmin = coord.min(0)
+        if crng is None: crng = coord.max(0) - cmin
+        OP = UnifyGridOperation(cmin, crng)
+        # OP = CoordxGridOperation(origin, Constants.PHYTICK)
         return OP.perform(coord)
 
     def perform_on_Grid(self, Grid: StellarGrid):
-        origin = Grid.box["min"] if hasattr(Grid, "box") else Grid.coord.min(0)
-        OP = CoordxGridOperation(origin, Constants.PHYTICK)
+        origin = Grid.box["min"] if hasattr(Grid, "box") else None
+        tick   = Grid.box["rng"] if hasattr(Grid, "box") else None
+
+        OP = UnifyGridOperation(origin, tick)
         OP.perform_on_Grid(Grid)
 
 class InterpBuilderGridOperation(BaseGridModelOperation):

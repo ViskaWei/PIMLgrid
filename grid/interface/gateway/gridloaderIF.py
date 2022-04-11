@@ -5,7 +5,7 @@ from grid.center.crust.data.basegrid import StellarGrid
 class StellarGridLoaderIF(ObjectLoaderIF):
     """ class for loading Spec Grid (wave, flux, Physical Param for each flux..). """
     def set_param(self, PARAM):
-        self.loader = DictLoaderIF(PARAM["PATH"])
+        self.loader = DictLoaderIF(PARAM["BOSZ_PATH"])
 
     def load(self):
         coord = self.loader.load_arg("para")

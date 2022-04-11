@@ -2,7 +2,7 @@ from base.interface.gateway.baseparamIF import ParamIF
 from grid.center.crust.data.constants import Constants
 
 
-class GridParamIF(ParamIF):
+class StellarGridParamIF(ParamIF):
     required_attribute = ["box_name"]
 
     def set_param(self, PARAM):

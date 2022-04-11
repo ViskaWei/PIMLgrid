@@ -1,8 +1,6 @@
-
 from abc import ABC, abstractmethod
 from base.center.crust.basemodel import BaseModel, RBFInterpBuilderModel
-from grid.center.crust.data.basegrid import BaseGrid
-from grid.interface.gateway.gridstorerIF import InterpStorerIF
+from grid.center.crust.data.basegrid import BaseGrid, StellarGrid
 
 
 class BaseInterpBuilderGridModel(BaseModel):
@@ -14,9 +12,12 @@ class BaseInterpBuilderGridModel(BaseModel):
         pass
 
 class RBFInterpBuilderGridModel(RBFInterpBuilderModel):
-    def apply_on_Grid(self, Grid: BaseGrid) -> None:
-        interpolator = self.apply(Grid.coordx, Grid.value)
-        Grid.interpolator = interpolator
+    def apply_on_Grid(self, Grid: StellarGrid) -> None:
+        interpolator = self.apply(Grid.unit_coord, Grid.value)
+        def unit_coord_interpolator(eval_coord, scale=True):
+            unit_coord = Grid.unify(eval_coord) if scale else eval_coord
+            return interpolator(unit_coord)   
+        Grid.interpolator = unit_coord_interpolator
         Grid.builder = self.builder
 
 

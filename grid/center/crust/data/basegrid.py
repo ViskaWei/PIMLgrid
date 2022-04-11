@@ -6,7 +6,7 @@ class BaseGrid(object):
     def __init__(self, coord, value) -> None:
         self.coord  = coord
         self.value  = value
-        self.coordx = None
+        self.unit_coord = None
 
 
 class StellarGrid(BaseGrid):
@@ -15,7 +15,10 @@ class StellarGrid(BaseGrid):
         super().__init__(coord, value)
     
         self.PhyShort = Constants.PhyShort
-        self.dfcoord = self.set_dfcoord()
+        self.dfcoord  = self.set_dfcoord()
+
+        self.unify  : function = None
+        self.deunify: function = None
     
     def set_dfcoord(self):
         return pd.DataFrame(self.coord, columns=self.PhyShort)
