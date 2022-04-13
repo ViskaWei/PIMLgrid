@@ -1,5 +1,5 @@
 from base.center.crust.baseprocess import BaseProcess
-from grid.center.crust.data.basegrid import BaseGrid
+from grid.center.crust.data.basegrid import BaseGrid, StellarGrid
 from ..operation.gridoperation import BaseGridOperation,\
     StellarUnifyGridOperation, InterpBuilderGridOperation,\
     StellarBoxOperation
@@ -15,7 +15,7 @@ class StellarGridProcess(BaseProcess):
             InterpBuilderGridOperation(MODEL["interp"]),
         ]
         
-    def start(self, Grid: BaseGrid):
+    def start(self, Grid: StellarGrid):
         for operation in self.operation_list:
             operation.perform_on_Grid(Grid)
 

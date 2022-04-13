@@ -13,7 +13,7 @@ class StellarGrid(BaseGrid):
     """ Base class for all spec grids. """
     def __init__(self, coord, value) -> None:
         super().__init__(coord, value)
-    
+        self.coord_dim = len(coord[0])
         self.PhyShort = Constants.PhyShort
         self.dfcoord  = self.set_dfcoord()
 

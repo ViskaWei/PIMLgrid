@@ -14,7 +14,7 @@ class BaseInterpBuilderGridModel(BaseModel):
 class RBFInterpBuilderGridModel(RBFInterpBuilderModel):
     def apply_on_Grid(self, Grid: StellarGrid) -> None:
         interpolator = self.apply(Grid.unit_coord, Grid.value)
-        def unit_coord_interpolator(eval_coord, scale=True):
+        def unit_coord_interpolator(eval_coord, scale=False):
             unit_coord = Grid.unify(eval_coord) if scale else eval_coord
             return interpolator(unit_coord)   
         Grid.interpolator = unit_coord_interpolator
